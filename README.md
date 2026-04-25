@@ -1,0 +1,58 @@
+# Teams-Style Initials Placeholder Generator
+
+Command-line Python app that generates avatar placeholder images similar to the default profile placeholders in Teams, Outlook, and other M365 apps.
+
+## What It Generates
+
+- 1,764 PNG files (42 × 42 initial combinations)
+- Covers the 26 basic Latin letters plus 16 common French accented letters (À, Â, Æ, Ç, È, É, Ê, Ë, Î, Ï, Ô, Œ, Ù, Û, Ü, Ÿ)
+- Filenames like `AA.png`, `ÉÇ.png`, etc.
+- Transparent RGBA background with smooth anti-aliased circle edges (4× supersampling)
+- 21 background colors from the Fluent UI `PersonaInitialsColor` palette, deterministically assigned via MD5 hash
+
+## Requirements
+
+- Python 3.9+
+- Pillow
+
+## Setup
+
+```powershell
+python -m pip install -r requirements.txt
+```
+
+## Usage
+
+```powershell
+python generate_placeholders.py
+```
+
+Optional arguments:
+
+```powershell
+python generate_placeholders.py --output-dir output --size 256 --font-size 102 --circle-padding 0
+```
+
+Options:
+
+- `--output-dir`: Output folder for PNG files (default: `output`)
+- `--size`: Square image size in pixels (default: `256`)
+- `--font-size`: Initials font size (default: `102`)
+- `--font-path`: Path to a custom `.ttf`/`.ttc` font
+- `--circle-padding`: Padding before drawing circle (default: `0`)
+
+## Example
+
+```powershell
+python generate_placeholders.py --output-dir generated --size 320 --font-size 128
+```
+
+After running, inspect the output directory for all generated images.
+
+## Disclaimer
+
+This project is not affiliated with, supported by, or endorsed by Microsoft. It is provided on an "as is" basis without warranty of any kind.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
