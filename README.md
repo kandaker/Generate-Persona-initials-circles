@@ -6,9 +6,10 @@ Command-line Python app that generates avatar placeholder images similar to the 
 
 - 1,764 PNG files (42 × 42 initial combinations)
 - Covers the 26 basic Latin letters plus 16 common French accented letters (À, Â, Æ, Ç, È, É, Ê, Ë, Î, Ï, Ô, Œ, Ù, Û, Ü, Ÿ)
-- Filenames like `AA.png`, `ÉÇ.png`, etc.
+- Filenames like `AA_fb6c917a-4235-4fb1-a406-1db84c6ca8dd.png`, `ÉÇ_fb6c917a-4235-4fb1-a406-1db84c6ca8dd.png`, etc.
 - Transparent RGBA background with smooth anti-aliased circle edges (4× supersampling)
 - 21 background colors from the Fluent UI `PersonaInitialsColor` palette, deterministically assigned via MD5 hash
+- A hardcoded marker GUID appended to every filename so downstream systems can detect these generated profile-photo placeholders
 
 ## Requirements
 
