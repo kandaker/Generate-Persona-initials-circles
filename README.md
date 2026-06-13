@@ -15,6 +15,7 @@ Command-line Python app that generates avatar placeholder images similar to the 
 
 - Python 3.9+
 - Pillow
+- NumPy
 
 ## Setup
 
@@ -49,6 +50,34 @@ python generate_placeholders.py --output-dir generated --size 320 --font-size 12
 ```
 
 After running, inspect the output directory for all generated images.
+
+## Detecting Generated Placeholders
+
+When these images are uploaded as O365/Teams profile pictures, Exchange re-encodes them as JPEG. The `detect_placeholder.py` script can identify whether a downloaded profile photo is one of the generated placeholders — even after JPEG re-encoding — without needing to know the user's initials.
+
+```powershell
+python detect_placeholder.py photo1.jpg photo2.jpg
+```
+
+Add `--verbose` for detailed detection info:
+
+```powershell
+python detect_placeholder.py downloaded_photo.jpg --verbose
+```
+
+The script uses structural analysis (dark corners, palette color matching, color uniformity, and white text detection) to determine if an image matches the pattern of our generated placeholders. It outputs a confidence score and a `PLACEHOLDER` / `NOT placeholder` verdict.
+
+### PowerShell workflow for admins
+
+```powershell
+# Download a user's profile photo from Exchange Online
+Connect-ExchangeOnline
+Get-UserPhoto -Identity "user@domain.com" |
+  ForEach-Object { [System.IO.File]::WriteAllBytes("photo.jpg", $_.PictureData) }
+
+# Check if it's a generated placeholder
+python detect_placeholder.py photo.jpg
+```
 
 ## Disclaimer
 
