@@ -10,7 +10,6 @@ from PIL import Image, ImageDraw, ImageFont
 
 # Stable marker GUID appended to generated filenames so downstream code can
 # identify these placeholders as profile-photo assets.
-FILE_MARKER_GUID = "fb6c917a-4235-4fb1-a406-1db84c6ca8dd"
 
 # Fluent UI PersonaInitialsColor palette (excluding transparent/black/gray).
 PALETTE = [
@@ -167,11 +166,11 @@ def main() -> None:
             font=font,
             circle_padding=args.circle_padding,
         )
-        output_file = args.output_dir / f"{initials}_{FILE_MARKER_GUID}.png"
+        output_file = args.output_dir / f"{initials}.png"
         image.save(output_file, format="PNG")
         count += 1
 
-    print(f"Generated {count} images in '{args.output_dir}' using marker GUID {FILE_MARKER_GUID}.")
+    print(f"Generated {count} images in '{args.output_dir}'.")
 
 
 if __name__ == "__main__":
